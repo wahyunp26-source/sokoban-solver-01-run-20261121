@@ -1,6 +1,6 @@
 const fs=require("fs");let W,O,py;
-function B(s,wk,bs){let pv=new Int32Array(wk.length).fill(-2);pv[s]=-1;let q=[s];for(let h=0;h<q.length;h++){let c=q[h];for(let d=0;d<4;d++){let n=c+O[d];if(wk[n]&&!bs.has(n)&&pv[n]===-2){pv[n]=c*4+d;q.push(n)}}}return pv}
-function P(a,b,wk,bs){if(a===b)return"";let pv=B(a,wk,bs);if(pv[b]===-2)return null;let s="",u=b;while(u!==a){let p=pv[u];s="udlr"[p%4]+s;u=p>>2}return s}
+function B(s,wk,bs){let pv=new Int32Array(wk.length).fill(-2);pv[s]=-1;let q=[s];for(let c of q)for(let d=0;d<4;d++){let n=c+O[d];if(wk[n]&&!bs.has(n)&&pv[n]<-1){pv[n]=c*4+d;q.push(n)}}return pv}
+function P(a,b,wk,bs){if(a===b)return"";let pv=B(a,wk,bs);if(pv[b]<-1)return null;let s="",u=b;while(u!==a){let p=pv[u];s="udlr"[p%4]+s;u=p>>2}return s}
 function S(cells,wkr,b0,gl,po){
 let N=wkr.length,live=new Uint8Array(N);
 for(let g of gl)live[g]=1;
